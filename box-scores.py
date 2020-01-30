@@ -69,6 +69,7 @@ for game in game_table:
     #     for player in player_stats_elements:
     #         current_player_row.append(player.text)
 
+    del table[5]
     print(winning_team + " " + winning_team_score + " || " + losing_team +
           ' ' + losing_team_score)
     print(tabulate(table, headers=headers, tablefmt="psql"))
