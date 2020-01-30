@@ -44,14 +44,13 @@ for game in game_table:
     for row in table_rows:
         player_row = []
 
-        if row.find('th').text.strip() != 'Reserves' and row.find(
-                'th').text.strip() != '':
+        if row.find('th').text.strip() != 'Reserves':
             player_row.append(row.find('th').text.strip())
 
         player_stat_elms = row.find_all('td')
 
         for player in player_stat_elms:
-            if player.text != 'Did Not Play' and player.text != 'Not With Team' and player.text != 'Did Not Dress' and player.text != '':
+            if player.text != 'Did Not Play' and player.text != 'Not With Team' and player.text != 'Did Not Dress':
                 player_row.append(player.text)
 
         table.append(player_row)
@@ -69,7 +68,6 @@ for game in game_table:
     #     for player in player_stats_elements:
     #         current_player_row.append(player.text)
 
-    del table[5]
     print(winning_team + " " + winning_team_score + " || " + losing_team +
           ' ' + losing_team_score)
     print(tabulate(table, headers=headers, tablefmt="psql"))
