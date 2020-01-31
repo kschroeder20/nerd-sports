@@ -1,3 +1,5 @@
 {
-    "python.formatting.provider": "yapf"
+    "python.formatting.provider": "yapf",
+    "typescript.format.enable": false,
+    "python.formatting.autopep8Path": ""
 }
