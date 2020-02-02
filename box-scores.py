@@ -2,6 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 from tabulate import tabulate
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 URL = 'https://www.basketball-reference.com/'
 page = requests.get(URL)
 
@@ -11,12 +23,12 @@ game_table = soup.findAll("div", {"class": "game_summary"})
 
 for game in game_table:
     winning_table = []
-    winning_headers = []
+    winning_headers = ["Players"]
     winning_team = game.find("tr", {"class": "winner"}).find("a").text
     winning_team_abv = game.find("tr", {"class": "winner"}).find("a")['href'].split('/')[2]
     winning_team_score = game.find("tr", {"class": "winner"}).find("td", {"class": "right"}).text
     losing_table = []
-    losing_headers = []
+    losing_headers = ["Players"]
     losing_team = game.find("tr", {"class": "loser"}).find("a").text
     losing_team_abv = game.find("tr", {"class": "loser"}).find("a")['href'].split('/')[2]
     losing_team_score = game.find("tr", {"class": "loser"}).find("td", {"class": "right"}).text
@@ -71,7 +83,7 @@ for game in game_table:
         losing_table.append(losing_player_row)
 
     print("")
-    print(winning_team + " " + winning_team_score + " || " + losing_team + ' ' + losing_team_score)
+    print(color.GREEN + winning_team + " " + winning_team_score + " || " + losing_team + ' ' + losing_team_score + color.END)
     print("")
     print(winning_team)
     print(tabulate(winning_table, headers=winning_headers, tablefmt="psql"))
